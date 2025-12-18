@@ -1,1 +1,55 @@
-<p>login works!</p>
+<div class="container-fluid vh-100 d-flex align-items-center justify-content-center bg-light">
+    <div class="row w-100 justify-content-center">
+        <div class="col-4">
+
+            <div class="card shadow border-o rounded-4">
+                <div class="card-body p-4">
+
+                    <!-- title  -->
+                    <div class="text-center mb-4">
+                        <h3 class="fw-bold">TaskFlow</h3>
+                        <p class="text-muted mb-0">Login to your account</p>
+                    </div>
+
+                    <!-- login form -->
+                    <form [formGroup]="loginForm" (ngSubmit)="submit()">
+                        <div class="mb-3">
+                            <label class="form-label" for="email">Email</label>
+                            <input class="form-control" type="email" id="email" formControlName="email" placeholder="admin@test.com">
+                            <div class="text-danger small">
+                                @if (loginForm.controls.email.touched && loginForm.controls.email.invalid) {
+                                   <span>Valid email is required.</span>
+                                }
+                                <!-- @if(loginForm.get('email')?.errors?.['email']) {
+                                    <span>Please Enter valid email.</span>
+                                } -->
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="password">Password</label>
+                            <input class="form-control" type="password" id="password" formControlName="password" placeholder="********">
+                            <div class="text-danger small">
+                                @if(loginForm.controls.password.touched && loginForm.controls.password.invalid) {
+                                    <span>Password is required.</span>
+                                }
+                                @if (loginForm.controls.password.errors?.['minlength']) {
+                                    <span>Minimum 4 characters required.</span>
+                                }
+                            </div>
+                        </div>
+                        <button class="btn btn-primary w-100 mt-3" type="submit">Login</button>
+                    </form>
+
+                    <!-- Hint -->
+                    <div class="mt-4 text-center">
+                        <small class="text-muted">
+                            Admin: <b>admin&#64;test.com</b> / 123456 <br />
+                            Employee: <b>emp&#64;test.com</b> / 123456
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

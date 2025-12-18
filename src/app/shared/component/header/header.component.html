@@ -1,0 +1,76 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+  <a class="navbar-brand fw-bold"> TaskFlow </a>
+
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarNav"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav me-auto">
+      <!-- ADMIN LINKS -->
+
+      @if(role === 'ADMIN') {
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          routerLink="/admin/dashboard"
+          routerLinkActive="active"
+        >
+          Dashboard
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/admin/tasks" routerLinkActive="active">
+          Tasks
+        </a>
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          routerLink="/admin/employees"
+          routerLinkActive="active"
+        >
+          Employees
+        </a>
+      </li>
+      }
+
+      <!-- EMPLOYEE LINKS -->
+      @if (role === 'EMPLOYEE') {
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          routerLink="/employee/dashboard"
+          routerLinkActive="active"
+        >
+          Dashboard
+        </a>
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          routerLink="/employee/my-tasks"
+          routerLinkActive="active"
+        >
+          My Tasks
+        </a>
+      </li>
+      }
+    </ul>
+
+    <!-- RIGHT SIDE -->
+    <div class="d-flex align-items-center gap-3">
+      <span class="text-white small">
+        Role: <b>{{ role }}</b>
+      </span>
+      <button class="btn btn-outline-light btn-sm" (click)="logout()">
+        Logout
+      </button>
+    </div>
+  </div>
+</nav>

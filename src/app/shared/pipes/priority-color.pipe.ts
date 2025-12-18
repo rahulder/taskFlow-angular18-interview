@@ -2,12 +2,14 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'priorityColor',
-  standalone: true
+  standalone: true,
 })
 export class PriorityColorPipe implements PipeTransform {
-
-  transform(value: unknown, ...args: unknown[]): unknown {
-    return null;
+  transform(value: string, ...args: unknown[]): unknown {
+    return value === 'High'
+      ? 'danger'
+      : value === 'Medium'
+      ? 'warning'
+      : 'success';
   }
-
 }

@@ -1,5 +1,5 @@
 import { CanActivateFn } from '@angular/router';
 
-export const roleGuard: CanActivateFn = (route, state) => {
-  return true;
+export const roleGuard = (role: string): CanActivateFn => {
+  return () => JSON.parse(localStorage.getItem('user') || '{}')?.role === role;
 };
