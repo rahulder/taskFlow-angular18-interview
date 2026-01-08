@@ -4,6 +4,8 @@ import { roleGuard } from './auth/role.guard';
 import { LayoutComponent } from './shared/component/layout/layout.component';
 
 export const routes: Routes = [
+  // Login Route
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   {
     path: 'login',
     loadComponent: () =>
@@ -66,9 +68,6 @@ export const routes: Routes = [
       },
     ],
   },
-
-  // Login Route
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
   {
     path: '**',
     loadComponent: () =>
