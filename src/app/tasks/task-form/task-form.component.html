@@ -1,1 +1,88 @@
-<p>task-form works!</p>
+<div class="card shadow-sm border-0 mb-4">
+    <div class="card-header bg-light fw-semibold">
+        Add New Tasks
+    </div>
+
+    <div class="card-body">
+        <form [formGroup]="taskForm">
+            <div formArrayName="tasks">
+                @for(task of tasks.controls; let i = $index; track task) {
+                    <div class="row align-items-center mb-3" [formGroupName]="i">
+                        <!-- Title & Assigned To -->
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Title</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    formControlName="title"
+                                    placeholder="Task title"
+                                />
+                             </div> 
+
+                            <div class="col-md-6">
+                                <label class="form-label">Assigned To</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    formControlName="assignedTo"
+                                    placeholder="Employee name"
+                                />
+                            </div>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <textarea
+                                class="form-control"
+                                rows="2"
+                                formControlName="description"
+                                placeholder="Task description"
+                            ></textarea>
+                        </div>
+
+                        <!-- Priority, Status, Due Date -->
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label class="form-label">Priority</label>
+                                <select class="form-select" formControlName="priority">
+                                    <option value="Low">Low</option>
+                                    <option value="Medium">Medium</option>
+                                    <option value="High">High</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="form-label">Status</label>
+                                <select class="form-select" formControlName="status">
+                                    <option value="Pending">Pending</option>
+                                    <option value="In Progress">In Progress</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="form-label">Due Date</label>
+                                <input
+                                    type="date"
+                                    class="form-control"
+                                    formControlName="dueDate"
+                                />
+                            </div>
+                        </div>
+                        <div class="text-end">
+                            <button type="button" class="btn btn-outline-danger btn-sm" (click)="removeTask(i)" [disabled]="tasks.length === 1">Remove</button>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!-- Actions -->
+            <div class="d-flex justify-content-between mt-4">
+                <button type="button" class="btn btn-outline-primary" (click)="addTask()">Add More</button>
+                <button type="button" class="btn btn-success" (click)="submit()">Save Tasks</button>
+            </div>
+        </form>
+    </div>
+</div>

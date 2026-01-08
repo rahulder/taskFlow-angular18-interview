@@ -16,9 +16,20 @@ export class TaskService {
     return this.tasks$.asObservable();
   }
 
-  addTask(task: Task) {
-    const updatedTasks = [...this.tasks$.value, task];
+  addTask(tasks: Task[]) {
+    const normalizeTasks = tasks.map((task) => this.normalizeTask(task));
+    const updatedTasks = [...this.tasks$.value, ...normalizeTasks];
     this.save(updatedTasks);
+  }
+
+  // Ensure task consistency (ID, defaults)
+  private normalizeTask(task: Task): Task {
+    return {
+      ...task,
+      id: task.id ?? Date.now() + Math.random(), // safe unique ID
+      status: task.status || 'Pending',
+      priority: task.priority || 'Medium',
+    };
   }
 
   updateTask(updatedTask: Task) {
